@@ -1,0 +1,10 @@
+*.dll
+man/*
+packrat/lib*/
+packrat/src
+tests/testthat/library/*
+tests/testthat/repos/*
+*.Rhistory
+*.Rproj.user
+.*so
+.*o
