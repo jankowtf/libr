@@ -5,7 +5,29 @@
 #' The package provides useful functionality with respect to 
 #' packages and package libraries.
 #' 
-#' @section Main functions/methods: 
+#' @section Library-related functions/methods:
+#' 
+#' \itemize{
+#'    \item{\code{\link[libr]{compressLibrary}}: }{
+#'    
+#'        Compresses a package library so it can be backed up or transferred.
+#'    }
+#'    \item{\code{\link[libr]{deleteLibrary}}: }{
+#'    
+#'        Deletes a package library. Mainly designed when working with 
+#'        multiple libraries for systematic testing/sandboxing purposes
+#'        (e.g. testing new package versions in a own "fresh" library which
+#'        is deleted again if everything went according to plan).
+#'    }
+#'    \item{\code{\link[libr]{ensureLatestPackageVersions}}: }{
+#'    
+#'        Ensure that latest package versions are installed. Currently, 
+#'        this is mainly targeted at self-developed packages rather than
+#'        packages contributed by other developers.
+#'    }
+#' }
+#' 
+#' @section Package-related functions/methods: 
 #' 
 #' \itemize{
 #'    \item{\code{\link[libr]{asPackage}}: }{
@@ -34,28 +56,6 @@
 #'    \item{\code{\link[libr]{isPackageLoaded}}: }{
 #'    
 #'        Checks if package is loaded (attached to search path).
-#'    }
-#' }
-#' 
-#' @section Library management
-#' 
-#' \itemize{
-#'    \item{\code{\link[libr]{compressLibrary}}: }{
-#'    
-#'        Compresses a package library so it can be backed up or transferred.
-#'    }
-#'    \item{\code{\link[libr]{deleteLibrary}}: }{
-#'    
-#'        Deletes a package library. Mainly designed when working with 
-#'        multiple libraries for systematic testing/sandboxing purposes
-#'        (e.g. testing new package versions in a own "fresh" library which
-#'        is deleted again if everything went according to plan).
-#'    }
-#'    \item{\code{\link[libr]{ensureLatestPackageVersions}}: }{
-#'    
-#'        Ensure that latest package versions are installed. Currently, 
-#'        this is mainly targeted at self-developed packages rather than
-#'        packages contributed by other developers.
 #'    }
 #' }
 #'          

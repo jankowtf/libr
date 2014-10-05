@@ -1,8 +1,11 @@
 #' @title
-#' Is Package Library
+#' Is Package Library (generic)
 #'
 #' @description 
 #' Checks if a specified directory is a package library.
+#' 
+#' @details
+#' See main method: \code{\link[libr]{isLibrary-character-method}}.
 #' 
 #' @param lib \strong{Signature argument}.
 #'    Object containing library location information.
@@ -13,7 +16,8 @@
 #' @param strict \code{\link{logical}}.
 #'    Should certain conditions lead to an error (\code{TRUE}) or only to 
 #'    an return value of \code{FALSE} (\code{FALSE}, default).
-#' @example inst/examples/isLibrary.R
+#' @template threedot
+#' @example inst/examples/isLibrary.r
 #' @seealso \code{
 #'    \link[libr]{isLibrary-character-method}
 #' } 
@@ -27,21 +31,23 @@ setGeneric(name="isLibrary",
   def = function(
     lib,
     look_for = "DESCRIPTION",
-    strict = FALSE
+    strict = FALSE,
+    ...
   ) {
   standardGeneric("isLibrary")
 })
 
 #' @title
-#' Is Package Library
+#' Is Package Library (character-method)
 #'
 #' @description 
 #' Checks if a specified directory is a package library.
 #' 
 #' @inheritParams isLibrary
 #' @param lib \code{\link{character}}.  
-#' @return \code{\link{logical}}. \code{TRUE} if \code{lib} is a package library,
-#'    \code{FALSE} if it is not.
+#' @return \code{\link{logical}}. \code{TRUE}: package library;
+#'    \code{FALSE}: no a package library.
+#' @example inst/examples/isLibrary.r
 #' @seealso \code{
 #'    \link[libr]{isLibrary}
 #' } 
@@ -56,7 +62,8 @@ setMethod(f = "isLibrary",
   definition = function(
     lib,
     look_for,
-    strict
+    strict,
+    ...
   ) {
     
   if (!file.exists(lib)) {

@@ -1,17 +1,21 @@
 #' @title 
-#' Coerce input to a package
+#' Coerce Input to a Package (generic)
 #'
 #' @description 
 #' Possible inputs:
 #' \itemize{
 #'    \item{path}
 #'    \item{package object}
-#'    \item{package name (loaded package)}
+#'    \item{package name (loaded or at least installed)}
 #' }
 #' 
+#' @details 
+#' See main method: \code{\link[libr]{asPackage-character-method}}.
+#' 
 #' @param x \strong{Signature argument}.
-#'    Object to be transformed into an package.
-#' @example inst/examples/asPackage.R
+#'    Object to be transformed into a package. See \emph{Description} for 
+#'    possible inputs.
+#' @example inst/examples/asPackage.r
 #' @seealso \code{
 #'   	\link[libr]{asPackage-character-method},
 #' 		\link[devtools]{as.package}
@@ -31,14 +35,20 @@ setGeneric(
 })
 
 #' @title 
-#' Coerce input to a package (missing-method)
+#' Coerce Input to a Package (missing-method)
+#' 
+#' @details 
+#' See generic: \code{\link[libr]{asPackage}}
+#' See main method: \code{\link[libr]{asPackage-character-method}}
 #' 
 #' @inheritParams asPackage
 #' @param x \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[libr]{asPackage-character-method}}
+#'    \code{\link[libr]{asPackage-character-method}}.
+#' @example inst/examples/asPackage.r
 #' @seealso \code{
-#'     \link[libr]{asPackage}
+#'     \link[libr]{asPackage},
+#'     \link[libr]{asPackage-character-method}
 #' }
 #' @export
 setMethod(
@@ -56,12 +66,17 @@ setMethod(
 )
 
 #' @title 
-#' Coerce input to a package (character-method)
+#' Coerce Input to a Package (character-method)
+#' 
+#' @description
+#' See generic: \code{\link[libr]{asPackage}}
+#' 
 #' 
 #' @inheritParams asPackage
 #' @param x \code{\link{character}}.  
 #' @return Complemented package description in \code{list} form but with 
 #'    class attribute \code{package}.
+#' @example inst/examples/asPackage.r
 #' @seealso \code{
 #'     \link[libr]{asPackage}
 #' }
@@ -78,13 +93,13 @@ setMethod(
   ) {
       
   if (file.exists(x) && file.info(x)$isdir) {
-  ## Supposing that 'x' is the package project directory //
+  ## Assuming that 'x' is the package project directory //
 #     devtools::as.package
 #     devtools:::check_dir
     out <- devtools::as.package(x = x)
   } else {
-  ## Supposing that 'x' is the name of either an installed or loaded 
-  ## package //
+  ## Assuming that 'x' is the name of either an installed 
+  ## or loaded package //
     if (  x %in% loadedNamespaces() || 
           x %in% .packages(all.available = TRUE, lib.loc = .libPaths()[1])
     ) {
