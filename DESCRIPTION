@@ -5,12 +5,16 @@ Version: 0.1.1
 Authors.R: "Janko Thyson <janko.thyson@rappster.de> [aut, cre]"
 Maintainer: Janko Thyson <janko.thyson@rappster.de>
 Description: The package provides useful functionality with respect to packages
-         and package libraries.
-Depends: R (>= 3.1.1)
+    and package libraries.
+Depends:
+    R (>= 3.1.1)
 License: GPL (>= 2)
 Roxygen: list(wrap = FALSE)
 NeedsCompilation: no
 Repository: CRAN
 LazyData: true
-Imports: devtools, conditionr, repositr
+Imports:
+    devtools,
+    conditionr,
+    repositr
 Date: 2014-10-05 15:16:08
