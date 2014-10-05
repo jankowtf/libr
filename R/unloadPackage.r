@@ -1,12 +1,16 @@
 #' @title 
-#' Unload Package 
+#' Unload Package (generic)
 #'
 #' @description 
-#' Unloads from search path package.
+#' Unloads package from search path.
+#' 
+#' @details
+#' See generic: \code{\link[libr]{unloadPackage}}.
+#' See main method: \code{\link[libr]{unloadPackage-character-method}}.
 #' 
 #' @param pkg \strong{Signature argument}.
 #'    Object containing package information.
-#' @example inst/examples/unloadPackage.R
+#' @example inst/examples/unloadPackage.r
 #' @seealso \code{
 #'   	\link[libr]{unloadPackage-character-method},
 #' 		\link[devtools]{unload}
@@ -26,14 +30,20 @@ setGeneric(
 })
 
 #' @title 
-#' Unload Package 
+#' Unload Package (missing-method)
+#'
+#' @details
+#' See generic: \code{\link[libr]{unloadPackage}}.
+#' See main method: \code{\link[libr]{unloadPackage-character-method}}.
 #'
 #' @inheritParams unloadPackage
 #' @param pkg \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[libr]{unloadPackage-character-method}}
+#'    \code{\link[libr]{unloadPackage-character-method}}.
+#' @example inst/examples/unloadPackage.r
 #' @seealso \code{
-#'     \link[libr]{unloadPackage}
+#'    \link[libr]{unloadPackage},
+#'    \link[libr]{unloadPackage-character-method}
 #' }
 #' @template author
 #' @template references
@@ -53,17 +63,15 @@ setMethod(
 )
 
 #' @title 
-#' Unload Package 
+#' Unload Package (character-method)
 #'
-#' @description 
-#' Unloads package.
-#' 
 #' @details
-#' Details 
+#' See generic: \code{\link[libr]{unloadPackage}}.
 #'
 #' @inheritParams unloadPackage
 #' @param pkg \code{\link{character}}.  
-#' @return TODO
+#' @return \code{\link{NULL}}.
+#' @example inst/examples/unloadPackage.r
 #' @seealso \code{
 #'     \link[libr]{unloadPackage}
 #' }

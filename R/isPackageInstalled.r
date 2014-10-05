@@ -1,8 +1,11 @@
 #' @title
-#' Is Package Installed
+#' Is Package Installed (generic)
 #'
 #' @description 
 #' Checks if package is installed.
+#' 
+#' @details
+#' See main method: \code{\link[libr]{isPackageInstalled-character-character-method}}.
 #' 
 #' @param pkg \strong{Signature argument}.
 #'    Object containing package information.
@@ -13,7 +16,7 @@
 #'    (\code{TRUE}, default) 
 #'    or detailed result, i.e. check for each package library in \code{lib} 
 #'    (\code{FALSE}). 
-#' @example inst/examples/isPackageInstalled.R
+#' @example inst/examples/isPackageInstalled.r
 #' @seealso \code{
 #'    \link[libr]{isPackageInstalled-character-character-method}
 #' } 
@@ -34,16 +37,18 @@ setGeneric(name="isPackageInstalled",
 })
 
 #' @title
-#' Is Package Installed
+#' Is Package Installed (character-missing-method)
 #'
-#' @description 
-#' Checks if package is installed.
+#' @details
+#' See generic: \code{\link[libr]{isPackageInstalled}}.
+#' See main method: \code{\link[libr]{isPackageInstalled-character-character-method}}.
 #' 
 #' @inheritParams isPackageInstalled
 #' @param pkg \code{\link{character}}.  
 #' @param lib \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[libr]{isPackageInstalled-character-character-method}}
+#'    \code{\link[libr]{isPackageInstalled-character-character-method}}.
+#' @example inst/examples/isPackageInstalled.r
 #' @seealso \code{
 #'    \link[libr]{isPackageInstalled}
 #' } 
@@ -71,16 +76,17 @@ setMethod(f = "isPackageInstalled",
 )
 
 #' @title
-#' Is Package Installed
+#' Is Package Installed (character-character-method)
 #'
-#' @description 
-#' Checks if package is installed.
+#' @details
+#' See generic: \code{\link[libr]{isPackageInstalled}}.
 #' 
 #' @inheritParams isPackageInstalled
 #' @param pkg \code{\link{character}}.  
 #' @param lib \code{\link{character}}.  
 #' @return \code{\link{logical}}. \code{TRUE} if package is installed,
 #'    \code{FALSE} if it is not.
+#' @example inst/examples/isPackageInstalled.r
 #' @seealso \code{
 #'    \link[libr]{isPackageInstalled}
 #' } 
@@ -109,7 +115,3 @@ setMethod(f = "isPackageInstalled",
   
   } 
 )
-
-
-
-

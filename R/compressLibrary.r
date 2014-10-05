@@ -1,8 +1,11 @@
 #' @title 
-#' Compress Package Library
+#' Compress Package Library (generic)
 #'
 #' @description 
-#' Compresses a R package library of a \emph{rapp} project.
+#' Compresses an R package library.
+#' 
+#' @details 
+#' See main method: \code{\link[libr]{compressLibrary-character-character-method}}
 #' 
 #' @param lib \strong{Signature argument}.
 #' 		Object containing package library information.
@@ -14,7 +17,7 @@
 #' 		If file already exists: \code{TRUE} means file is overwritten,
 #' 		\code{FALSE} (default) means it is not overwritten.
 #' @template threedot
-#' @example inst/examples/compressLibrary.R
+#' @example inst/examples/compressLibrary.r
 #' @seealso \code{
 #'    \link[libr]{compressLibrary-character-character-method}
 #' }
@@ -28,7 +31,7 @@ setGeneric(
     "to"
   ),
   def = function(
-    lib = R.home("library"),
+    lib = .libPaths()[1],
     to = dirname(lib),
     add_timestamp = FALSE,
     overwrite = FALSE,
@@ -39,18 +42,20 @@ setGeneric(
 )
 
 #' @title 
-#' Compress Package Library
+#' Compress Package Library (missing-missing-method)
 #'
-#' @description 
-#' Compresses a R package library of a \emph{rapp} project.
+#' @details 
+#' See generic: \code{\link[libr]{compressLibrary}}.
+#' See main method: \code{\link[libr]{compressLibrary-character-character-method}}.
 #' 
 #' @inheritParams compressLibrary
-#' @param lib \code{\link{character}}.
+#' @param lib \code{\link{missing}}.
 #' @param to \code{\link{missing}}.
 #' @return See method 
 #'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[libr]{compressLibrary}
+#'    \link[libr]{compressLibrary},
+#'    \link[libr]{compressLibrary-character-character-method}
 #' }
 #' @template author
 #' @template references
@@ -68,40 +73,33 @@ setMethod(
     overwrite,
     ...
   ) {
-    
-#   ## Tracing //
-#   if (length(as.numeric(getOption("rapp")$trace$tracelevel))) {
-#     
-#   }        
-  
-  ## Dispatch //
-  out <- compressLibrary(
+        
+  return(compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
     overwrite = overwrite,
     ...
-  )
-  
-  ## Return value //
-  return(out)
+  ))
     
   }
 )
 
 #' @title 
-#' Compress Package Library
+#' Compress Package Library (missing-character-method)
 #'
-#' @description 
-#' Compresses a R package library of a \emph{rapp} project.
+#' @details 
+#' See generic: \code{\link[libr]{compressLibrary}}.
+#' See main method: \code{\link[libr]{compressLibrary-character-character-method}}.
 #' 
 #' @inheritParams compressLibrary
-#' @param lib \code{\link{character}}.
-#' @param to \code{\link{missing}}.
+#' @param lib \code{\link{missing}}.
+#' @param to \code{\link{character}}.
 #' @return See method 
 #'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[libr]{compressLibrary}
+#'    \link[libr]{compressLibrary},
+#'    \link[libr]{compressLibrary-character-character-method}
 #' }
 #' @template author
 #' @template references
@@ -120,31 +118,23 @@ setMethod(
     ...
   ) {
     
-#   ## Tracing //
-#   if (length(as.numeric(getOption("rapp")$trace$tracelevel))) {
-#     
-#   }        
-  
-  ## Dispatch //
-  out <- compressLibrary(
+  return(compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
     overwrite = overwrite,
     ...
-  )
-  
-  ## Return value //
-  return(out)
+  ))
     
   }
 )
 
 #' @title 
-#' Compress Package Library
+#' Compress Package Library (character-missing-method)
 #'
-#' @description 
-#' Compresses a R package library of a \emph{rapp} project.
+#' @details 
+#' See generic: \code{\link[libr]{compressLibrary}}.
+#' See main method: \code{\link[libr]{compressLibrary-character-character-method}}.
 #' 
 #' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
@@ -152,7 +142,8 @@ setMethod(
 #' @return See method 
 #'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[libr]{compressLibrary}
+#'    \link[libr]{compressLibrary},
+#'    \link[libr]{compressLibrary-character-character-method}
 #' }
 #' @template author
 #' @template references
@@ -170,32 +161,23 @@ setMethod(
     overwrite,
     ...
   ) {
-    
-#   ## Tracing //
-#   if (length(as.numeric(getOption("rapp")$trace$tracelevel))) {
-#     
-#   }        
   
-  ## Dispatch //
-  out <- compressLibrary(
+  return(compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
     overwrite = overwrite,
     ...
-  )
-  
-  ## Return value //
-  return(out)
+  ))
     
   }
 )
 
 #' @title 
-#' Compress Package Library
+#' Compress Package Library (character-character-method)
 #'
-#' @description 
-#' Compresses a R package library of a \emph{rapp} project.
+#' @details 
+#' See generic: \code{\link[libr]{compressLibrary}}.
 #' 
 #' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
@@ -222,11 +204,6 @@ setMethod(
     ...
   ) {
     
-#   ## Tracing //
-#   if (length(as.numeric(getOption("rapp")$trace$tracelevel))) {
-#     
-#   }        
-  
   ## Check if file or directory //
   is_file <- grepl("\\.zip$", to)  
   if (is_file) {

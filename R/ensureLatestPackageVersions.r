@@ -1,9 +1,13 @@
 #' @title 
-#' Ensure Latest Package Versions
+#' Ensure Latest Package Versions (generic)
 #'
 #' @description 
 #' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' the package library (\code{lib}) and the package repository/repositories
+#' (\code{repos}).
+#' 
+#' @details
+#' See main method: \code{\link[libr]{ensureLatestPackageVersions-character-character-character-method}}.
 #' 
 #' @param lib \strong{Signature argument}.
 #'    Object containing library information.
@@ -12,7 +16,10 @@
 #' @param pkgs \strong{Signature argument}.
 #'    Object containing package name information.
 #' @template threedot
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export ensureLatestPackageVersions
@@ -24,8 +31,8 @@ setGeneric(
     "pkgs"
   ),
   def = function(
-    lib = R.home("library"),
-    repos = file.path("file://", Sys.getenv("HOME"), ".rapp/repos"),
+    lib = .libPaths()[1],
+    repos = file.path("file://", Sys.getenv("HOME"), "rapp/repos/r"),
     pkgs = character(),
     ...
   ) {
@@ -33,18 +40,22 @@ setGeneric(
 })
 
 #' @title 
-#' Ensure Latest Package Versions (\code{missing-missing-missing-method})
+#' Ensure Latest Package Versions (missing-missing-missing-method)
 #'
 #' @description 
-#' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' See generic: \code{\link[libr]{ensureLatestPackageVersions}}.
+#' See main method: \code{\link[libr]{ensureLatestPackageVersions-character-character-character-method}}.
 #' 
 #' @inheritParams ensureLatestPackageVersions
 #' @param lib \code{\link{missing}}. 
 #' @param repos \code{\link{missing}}. 
 #' @param pkgs \code{\link{missing}}. 
 #' @return TODO 
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions}
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export
@@ -73,18 +84,22 @@ setMethod(
 )
 
 #' @title 
-#' Ensure Latest Package Versions (\code{character-missing-missing-method})
+#' Ensure Latest Package Versions (character-missing-missing-method)
 #'
 #' @description 
-#' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' See generic: \code{\link[libr]{ensureLatestPackageVersions}}.
+#' See main method: \code{\link[libr]{ensureLatestPackageVersions-character-character-character-method}}.
 #' 
 #' @inheritParams ensureLatestPackageVersions
 #' @param lib \code{\link{character}}. 
 #' @param repos \code{\link{missing}}. 
 #' @param pkgs \code{\link{missing}}. 
 #' @return TODO 
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions}
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export
@@ -113,18 +128,22 @@ setMethod(
 )
 
 #' @title 
-#' Ensure Latest Package Versions (\code{missing-character-missing-method})
+#' Ensure Latest Package Versions (missing-character-missing-method)
 #'
 #' @description 
-#' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' See generic: \code{\link[libr]{ensureLatestPackageVersions}}.
+#' See main method: \code{\link[libr]{ensureLatestPackageVersions-character-character-character-method}}.
 #' 
 #' @inheritParams ensureLatestPackageVersions
 #' @param lib \code{\link{missing}}. 
 #' @param repos \code{\link{character}}. 
 #' @param pkgs \code{\link{missing}}. 
 #' @return TODO 
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions}
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export
@@ -153,18 +172,22 @@ setMethod(
 )
 
 #' @title 
-#' Ensure Latest Package Versions (\code{character-character-missing-method})
+#' Ensure Latest Package Versions (character-character-missing-method)
 #'
 #' @description 
-#' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' See generic: \code{\link[libr]{ensureLatestPackageVersions}}.
+#' See main method: \code{\link[libr]{ensureLatestPackageVersions-character-character-character-method}}.
 #' 
 #' @inheritParams ensureLatestPackageVersions
 #' @param lib \code{\link{character}}. 
 #' @param repos \code{\link{character}}. 
 #' @param pkgs \code{\link{missing}}. 
 #' @return TODO 
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions}
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export
@@ -193,18 +216,21 @@ setMethod(
 )
 
 #' @title 
-#' Ensure Latest Package Versions (\code{character-character-character-method})
+#' Ensure Latest Package Versions (character-character-character-method)
 #'
 #' @description 
-#' Ensures that latest package versions are installed based on a comparison of 
-#' the package library and the package repository/repositories.
+#' See generic: \code{\link[libr]{ensureLatestPackageVersions}}.
 #' 
 #' @inheritParams ensureLatestPackageVersions
 #' @param lib \code{\link{character}}. 
 #' @param repos \code{\link{character}}. 
 #' @param pkgs \code{\link{character}}. 
 #' @return TODO 
-#' @example inst/examples/ensureLatestPackageVersions.R
+#' @example inst/examples/ensureLatestPackageVersions.r
+#' @seealso \code{
+#'    \link[libr]{ensureLatestPackageVersions}
+#'    \link[libr]{ensureLatestPackageVersions-character-character-character-method}
+#' }
 #' @template author
 #' @template references
 #' @export
