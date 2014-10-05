@@ -66,7 +66,7 @@ ensureLatestPackageVersions(
 
 1. If current working directory corresponds to package project
 
-```
+  ```
 asPackage()
 
 # $package
@@ -120,13 +120,13 @@ asPackage()
 
 2. Specify path to package project explicitly
 
-```
+  ```
 asPackage(x = "path/to/package/project")
 ```
 
 3. Name of an installed or loaded package
 
-```
+  ```
 asPackage(x = "devtools")
 
 # $package
@@ -176,7 +176,7 @@ asPackage(x = "devtools")
 
 1. Current working directory corresponds to package project
 
-```
+  ```
 ## For package 'libr'
 devtools::load_all()
 # Loading libr
@@ -189,7 +189,7 @@ unloadPackage()
 
 2. Explicit path to to package project
 
-```
+  ```
 ## For package 'libr'
 devtools::load_all(pkg = "/path/to/package/project")
 # Loading libr
@@ -202,7 +202,7 @@ unloadPackage(pkg = "/path/to/package/project")
 
 3. Name of loaded package
 
-```
+  ```
 require("devtools")
 "devtools" %in% loadedNamespaces()
 # [1] TRUE
@@ -229,7 +229,7 @@ isPackageInstalled("devtools")
 # [1] TRUE
 isPackageInstalled("some.package")
 # [1] FALSE
-`` 
+``` 
 
 Is package loaded? 
 
