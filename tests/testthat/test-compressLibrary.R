@@ -1,5 +1,5 @@
 require("testthat")
-test_that(desc="test_compressPackageLibrary", code = {
+test_that(desc="test_compressLibrary", code = {
   
   ## Private function //
   .openDirectory <- function(dir = getwd()){
@@ -32,7 +32,7 @@ test_that(desc="test_compressPackageLibrary", code = {
   fpath_to <- file.path(to, paste0(basename(lib), ".zip"))
   
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to),
+    res <- compressLibrary(lib = lib, to = to),
     "character"
   )
   expect_equal(res, normalizePath(fpath_to, winslash = "/"))
@@ -40,7 +40,7 @@ test_that(desc="test_compressPackageLibrary", code = {
   expect_is(time.1 <- file.info(fpath_to)$mtime, "POSIXct")
   Sys.sleep(time = 2)
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to, overwrite = TRUE),
+    res <- compressLibrary(lib = lib, to = to, overwrite = TRUE),
     "character"
   )
   expect_equal(res, normalizePath(fpath_to, winslash = "/"))
@@ -54,50 +54,50 @@ test_that(desc="test_compressPackageLibrary", code = {
   
   ## With timestamp
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to, add_timestamp = TRUE),
+    res <- compressLibrary(lib = lib, to = to, add_timestamp = TRUE),
     "character"
   )
   expect_true(grepl("library_\\d*", res))
   Sys.sleep(time = 2)
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to, add_timestamp = TRUE),
+    res <- compressLibrary(lib = lib, to = to, add_timestamp = TRUE),
     "character"
   )
   expect_true(length(files_del <- list.files(to, full.names = TRUE)) == 2)
   sapply(files_del, unlink, force = TRUE)
   
   ## Condition handling //
-  expect_error(compressPackageLibrary(lib = "nonexistingpath", to=to))
-  expect_error(compressPackageLibrary(lib = lib, to = "nonexistingpath"))
-  expect_error(compressPackageLibrary(lib = tempdir(), to = to))
+  expect_error(compressLibrary(lib = "nonexistingpath", to=to))
+  expect_error(compressLibrary(lib = lib, to = "nonexistingpath"))
+  expect_error(compressLibrary(lib = tempdir(), to = to))
   
   ## File path 'to' //
   to <- file.path(tempdir(), "backup/test.zip")
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to),
+    res <- compressLibrary(lib = lib, to = to),
     "character"
   )
   expect_true(identical(res, normalizePath(to, winslash = "/", mustWork=FALSE)))
   sapply(list.files(dirname(to), full.names = TRUE), unlink, force = TRUE)
   
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to, add_timestamp = TRUE),
+    res <- compressLibrary(lib = lib, to = to, add_timestamp = TRUE),
     "character"
   )
   expect_true(grepl(".*_\\d*", res))
   sapply(list.files(dirname(to), full.names = TRUE), unlink, force = TRUE)
-  expect_error(compressPackageLibrary(lib=lib, to="nonexistingpath/test.zip"))
+  expect_error(compressLibrary(lib=lib, to="nonexistingpath/test.zip"))
   
   to <- "test.zip"
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to),
+    res <- compressLibrary(lib = lib, to = to),
     "character"
   )
   expect_equal(res, normalizePath(file.path(dirname(lib), to), winslash = "/"))
   unlink(res, force = TRUE)
   to <- "test.zip"
   expect_is(
-    res <- compressPackageLibrary(lib = lib, to = to, add_timestamp = TRUE),
+    res <- compressLibrary(lib = lib, to = to, add_timestamp = TRUE),
     "character"
   )
   unlink(res, force = TRUE)
@@ -109,7 +109,7 @@ test_that(desc="test_compressPackageLibrary", code = {
   
   fpath_to <- file.path(dirname(lib), paste0(basename(lib), ".zip"))
   expect_is(
-    res <- compressPackageLibrary(lib = lib),
+    res <- compressLibrary(lib = lib),
     "character"
   )
   expect_equal(res, normalizePath(fpath_to, winslash = "/"))
@@ -128,7 +128,7 @@ test_that(desc="test_compressPackageLibrary", code = {
   if (FALSE) {
     fpath_to <- file.path(R.home(), paste0(basename(R.home("library")), ".zip"))
     expect_is(
-      res <- compressPackageLibrary(),
+      res <- compressLibrary(),
       "character"
     )
     expect_equal(res, normalizePath(fpath_to, winslash = "/"))

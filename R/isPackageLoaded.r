@@ -8,7 +8,7 @@
 #'    Object containing package information.
 #' @example inst/examples/isPackageLoaded.R
 #' @seealso \code{
-#'   	\link[rapp.core.library]{isPackageLoaded-character-method},
+#'   	\link[libr]{isPackageLoaded-character-method},
 #' 		\link[devtools]{unload}
 #' }
 #' @template author
@@ -28,18 +28,12 @@ setGeneric(
 #' @title 
 #' Is Package Loaded
 #'
-#' @description 
-#' Checks if package is loaded.
-#' 
-#' @details
-#' Details 
-#' 
 #' @inheritParams isPackageLoaded
 #' @param pkg \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[rapp.core.library]{isPackageLoaded-character-method}}
+#'    \code{\link[libr]{isPackageLoaded-character-method}}
 #' @seealso \code{
-#'     \link[rapp.core.library]{isPackageLoaded}
+#'     \link[libr]{isPackageLoaded}
 #' }
 #' @template author
 #' @template references
@@ -59,24 +53,17 @@ setMethod(
 )
 
 #' @title 
-#' Unload Package 
-#'
-#' @description 
-#' Unloads package.
+#' Is Package Loaded
 #' 
-#' @details
-#' Details 
-#'
 #' @inheritParams isPackageLoaded
 #' @param pkg \code{\link{character}}.  
 #' @return TODO
 #' @seealso \code{
-#'     \link[rapp.core.library]{isPackageLoaded}
+#'     \link[libr]{isPackageLoaded}
 #' }
 #' @template author
 #' @template references
 #' @export
-#' @import rapp.core.package
 setMethod(
   f = "isPackageLoaded", 
   signature = signature(
@@ -87,9 +74,9 @@ setMethod(
   ) {
       
   ## Ensure 'pkg' as expected by 'devtools' //    
-  pkg <- rapp.core.package::asPackage(pkg)
+  pkg <- asPackage(pkg)
   
-  return(paste0("package:", pkg$package) %in% search())
+  return(pkg$package %in% loadedNamespaces())
 
   }
 )

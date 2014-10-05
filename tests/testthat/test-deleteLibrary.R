@@ -1,5 +1,5 @@
 require("testthat")
-test_that(desc="test_deletePackageLibrary", code={
+test_that(desc="test_deleteLibrary", code={
   
   .cleanTempDir <- function(x) {
     if (grepl(basename(tempdir()), x)) {
@@ -21,7 +21,7 @@ test_that(desc="test_deletePackageLibrary", code={
   lib <- file.path(tempdir(), "library")
   dir.create(lib, showWarnings=FALSE, recursive=TRUE)
   #        .openDirectory(dirname(lib)) 
-  expect_error(deletePackageLibrary(lib = lib))
+  expect_error(deleteLibrary(lib = lib))
   
   if (basename(getwd()) == "testthat") {
     lib_0 <- "library"
@@ -29,7 +29,7 @@ test_that(desc="test_deletePackageLibrary", code={
     lib_0 <- "tests/testthat/library"
   }
   file.copy(lib_0, lib, overwrite = TRUE, recursive = TRUE)
-  expect_true(deletePackageLibrary(lib = file.path(lib, "library")))
+  expect_true(deleteLibrary(lib = file.path(lib, "library")))
   expect_false(file.exists(file.path(lib, "library")))
 
   on.exit(.cleanTempDir(x = lib))

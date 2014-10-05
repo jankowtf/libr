@@ -208,8 +208,8 @@ setMethod(
 #' @template author
 #' @template references
 #' @export
-#' @import rapp.core.condition
-#' @import rapp.core.repos
+#' @import conditionr
+#' @import repositr
 setMethod(
   f = "ensureLatestPackageVersions", 
   signature = signature(
@@ -224,7 +224,7 @@ setMethod(
     ...
   ) {
   
-  repos <- rapp.core.repos::normalizeRepositoryPath(
+  repos <- repositr::normalizeRepositoryPath(
     repos = repos, 
     type = "url_file"
   )
@@ -232,7 +232,7 @@ setMethod(
   pkg_info <- tryCatch(
     old.packages(lib.loc = lib, repos = repos),
     error = function(cond) {
-      rapp.core.condition::signalCondition(
+      conditionr::signalCondition(
         condition = "RepositoryLookupHadError",
         msg = c(
           "Repository lookup had error",
@@ -241,12 +241,12 @@ setMethod(
           Library = lib,
           "Original message" = conditionMessage(cond)
         ),
-        ns = "rapp.core.library",
+        ns = "libr",
         type = "error"
       )  
     },
     warning = function(cond) {
-        rapp.core.condition::signalCondition(
+        conditionr::signalCondition(
         condition = "RepositoryLookupHadWarning",
         msg = c(
           "Repository lookup had warning",
@@ -255,7 +255,7 @@ setMethod(
           Library = lib,
           "Original message" = conditionMessage(cond)
         ),
-        ns = "rapp.core.library",
+        ns = "libr",
         type = "error"
       )  
     }

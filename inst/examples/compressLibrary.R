@@ -29,26 +29,26 @@ dir.create(to_0, showWarnings=FALSE, recursive=TRUE)
 ## Actual application //
 ##------------------------------------------------------------------------------
   
-fpath <- compressPackageLibrary(lib = R.home("library"), to = to_0)
+fpath <- compressLibrary(lib = R.home("library"), to = to_0)
 fpath 
 file.exists(fpath)
 time_1 <- file.info(fpath)$mtime  
   
-fpath <- compressPackageLibrary(to = to_0, overwrite = TRUE)
+fpath <- compressLibrary(to = to_0, overwrite = TRUE)
 time_2 <- file.info(fpath)$mtime  
 time_1 < time_2  
   
 ## With timestamp
-fpath_1 <- compressPackageLibrary(to = to_0, add_timestamp = TRUE)
-fpath_2 <- compressPackageLibrary(to = to_0, add_timestamp = TRUE)
+fpath_1 <- compressLibrary(to = to_0, add_timestamp = TRUE)
+fpath_2 <- compressLibrary(to = to_0, add_timestamp = TRUE)
   
 ## Condition handling //
-try(compressPackageLibrary(lib = "nonexistingpath", to = to_0))
-try(compressPackageLibrary(to = "nonexistingpath"))
+try(compressLibrary(lib = "nonexistingpath", to = to_0))
+try(compressLibrary(to = "nonexistingpath"))
   
 ## Explicit file paths for 'to' //
 to <- file.path(to_0, "test.zip")
-compressPackageLibrary(to = to)
-compressPackageLibrary(to = to, add_timestamp = TRUE)
+compressLibrary(to = to)
+compressLibrary(to = to, add_timestamp = TRUE)
 
 }

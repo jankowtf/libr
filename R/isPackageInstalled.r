@@ -15,7 +15,7 @@
 #'    (\code{FALSE}). 
 #' @example inst/examples/isPackageInstalled.R
 #' @seealso \code{
-#'    \link[rapp.core.library]{isPackageInstalled-character-character-method}
+#'    \link[libr]{isPackageInstalled-character-character-method}
 #' } 
 #' @template author
 #' @template references
@@ -43,9 +43,9 @@ setGeneric(name="isPackageInstalled",
 #' @param pkg \code{\link{character}}.  
 #' @param lib \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[rapp.core.library]{isPackageInstalled-character-character-method}}
+#'    \code{\link[libr]{isPackageInstalled-character-character-method}}
 #' @seealso \code{
-#'    \link[rapp.core.library]{isPackageInstalled}
+#'    \link[libr]{isPackageInstalled}
 #' } 
 #' @template author
 #' @template references
@@ -82,7 +82,7 @@ setMethod(f = "isPackageInstalled",
 #' @return \code{\link{logical}}. \code{TRUE} if package is installed,
 #'    \code{FALSE} if it is not.
 #' @seealso \code{
-#'    \link[rapp.core.library]{isPackageInstalled}
+#'    \link[libr]{isPackageInstalled}
 #' } 
 #' @template author
 #' @template references

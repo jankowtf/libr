@@ -1,11 +1,11 @@
-Package: rapp.core.library
+Package: libr
 Type: Package
-Title: Advanced functionality for handling package libraries
+Title: Functionality for handling package libraries
 Version: 0.1.0.1
 Authors@R: "Janko Thyson <janko.thyson@rappster.de> [aut, cre]"
 Maintainer: Janko Thyson <janko.thyson@rappster.de>
-Description: Advanced functionality for handling package libraries in the
-    context of using the 'rapp' framework.
+Description: The package provides useful functionality with respect to 
+    packages and package libraries.
 Depends:
     R (>= 3.1.1)
 License: GPL (>= 2)
@@ -15,6 +15,5 @@ Repository: CRAN
 LazyData: true
 Imports:
     devtools,
-    rapp.core.condition,
-    rapp.core.package,
-    rapp.core.repos
+    conditionr,
+    repositr

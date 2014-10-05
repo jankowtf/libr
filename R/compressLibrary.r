@@ -14,15 +14,15 @@
 #' 		If file already exists: \code{TRUE} means file is overwritten,
 #' 		\code{FALSE} (default) means it is not overwritten.
 #' @template threedot
-#' @example inst/examples/compressPackageLibrary.R
+#' @example inst/examples/compressLibrary.R
 #' @seealso \code{
-#'    \link[rapp.core.library]{compressPackageLibrary-character-character-method}
+#'    \link[libr]{compressLibrary-character-character-method}
 #' }
 #' @template author
 #' @template references
 #' @export
 setGeneric(
-  name = "compressPackageLibrary",
+  name = "compressLibrary",
   signature = c(
     "lib", 
     "to"
@@ -34,7 +34,7 @@ setGeneric(
     overwrite = FALSE,
     ...
   ) {
-    standardGeneric("compressPackageLibrary")       
+    standardGeneric("compressLibrary")       
   }
 )
 
@@ -44,19 +44,19 @@ setGeneric(
 #' @description 
 #' Compresses a R package library of a \emph{rapp} project.
 #' 
-#' @inheritParams compressPackageLibrary
+#' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
 #' @param to \code{\link{missing}}.
 #' @return See method 
-#'    \code{\link[rapp.core.library]{compressPackageLibrary-character-character-method}}
+#'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[rapp.core.library]{compressPackageLibrary}
+#'    \link[libr]{compressLibrary}
 #' }
 #' @template author
 #' @template references
 #' @export
 setMethod(
-  f = "compressPackageLibrary", 
+  f = "compressLibrary", 
   signature = signature(
     lib = "missing",
     to = "missing"
@@ -75,7 +75,7 @@ setMethod(
 #   }        
   
   ## Dispatch //
-  out <- compressPackageLibrary(
+  out <- compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
@@ -95,19 +95,19 @@ setMethod(
 #' @description 
 #' Compresses a R package library of a \emph{rapp} project.
 #' 
-#' @inheritParams compressPackageLibrary
+#' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
 #' @param to \code{\link{missing}}.
 #' @return See method 
-#'    \code{\link[rapp.core.library]{compressPackageLibrary-character-character-method}}
+#'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[rapp.core.library]{compressPackageLibrary}
+#'    \link[libr]{compressLibrary}
 #' }
 #' @template author
 #' @template references
 #' @export
 setMethod(
-  f = "compressPackageLibrary", 
+  f = "compressLibrary", 
   signature = signature(
     lib = "missing",
     to = "character"
@@ -126,7 +126,7 @@ setMethod(
 #   }        
   
   ## Dispatch //
-  out <- compressPackageLibrary(
+  out <- compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
@@ -146,19 +146,19 @@ setMethod(
 #' @description 
 #' Compresses a R package library of a \emph{rapp} project.
 #' 
-#' @inheritParams compressPackageLibrary
+#' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
 #' @param to \code{\link{missing}}.
 #' @return See method 
-#'    \code{\link[rapp.core.library]{compressPackageLibrary-character-character-method}}
+#'    \code{\link[libr]{compressLibrary-character-character-method}}
 #' @seealso \code{
-#'    \link[rapp.core.library]{compressPackageLibrary}
+#'    \link[libr]{compressLibrary}
 #' }
 #' @template author
 #' @template references
 #' @export
 setMethod(
-  f = "compressPackageLibrary", 
+  f = "compressLibrary", 
   signature = signature(
     lib = "character",
     to = "missing"
@@ -177,7 +177,7 @@ setMethod(
 #   }        
   
   ## Dispatch //
-  out <- compressPackageLibrary(
+  out <- compressLibrary(
     lib = lib,
     to = to,
     add_timestamp = add_timestamp,
@@ -197,19 +197,19 @@ setMethod(
 #' @description 
 #' Compresses a R package library of a \emph{rapp} project.
 #' 
-#' @inheritParams compressPackageLibrary
+#' @inheritParams compressLibrary
 #' @param lib \code{\link{character}}.
 #' @param to \code{\link{character}}.
 #' @return \code{\link{character}}. File path of compressed package library.
 #' @seealso \code{
-#'    \link[rapp.core.library]{compressPackageLibrary}
+#'    \link[libr]{compressLibrary}
 #' }
 #' @template author
 #' @template references
 #' @export
-#' @import rapp.core.condition
+#' @import conditionr
 setMethod(
-  f = "compressPackageLibrary", 
+  f = "compressLibrary", 
   signature = signature(
     lib = "character",
     to = "character"
@@ -239,7 +239,7 @@ setMethod(
     
   ## Existence check //
   if (!file.exists(lib)) {
-    rapp.core.condition::signalCondition(
+    conditionr::signalCondition(
       condition = "DirectoryDoesNotExist",
       msg = c(
         "Directory does not exist",
@@ -249,7 +249,7 @@ setMethod(
     )
   }
   if (!file.exists(to)) {
-    rapp.core.condition::signalCondition(
+    conditionr::signalCondition(
       condition = "TargetDirectoryDoesNotExist",
       msg = c(
         "Target directory does not exist",
@@ -260,8 +260,8 @@ setMethod(
   }
   
   ## Directory check //
-  if (!isPackageLibrary(lib = lib, strict = TRUE)) {
-    rapp.core.condition::signalCondition(
+  if (!isLibrary(lib = lib, strict = TRUE)) {
+    conditionr::signalCondition(
       condition = "InvalidLibraryLocation",
       msg=c(
         "Invalid library location",
@@ -272,7 +272,7 @@ setMethod(
     )
   }
   if (!file.info(to)$isdir) {
-    rapp.core.condition::signalCondition(
+    conditionr::signalCondition(
       condition = "InvalidTargetLocation",
       msg=c(
         "Target is not an existing directory",
@@ -326,7 +326,7 @@ setMethod(
         #tar(tarfile="xz.tz", files=".", compression="xz") # slow
         
         if (res != 0) {
-          rapp.core.condition::signalCondition(
+          conditionr::signalCondition(
             condition = "CompressingFunctionReturnedWithError",
             msg = c(
               "Failed to compress directory",
@@ -348,7 +348,7 @@ setMethod(
       unname(out)
     }, 
     error=function(cond) {
-      rapp.core.condition::signalCondition(
+      conditionr::signalCondition(
         condition = "CompressionResultedInError",
         msg=c(
           "Compression resulted in error",
@@ -360,7 +360,7 @@ setMethod(
       )
     },
     warning=function(cond) {
-      rapp.core.condition::signalCondition(
+      conditionr::signalCondition(
         condition = "CompressionResultedInError",
         msg=c(
           "Compression resulted in warning",

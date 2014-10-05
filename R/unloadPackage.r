@@ -2,13 +2,13 @@
 #' Unload Package 
 #'
 #' @description 
-#' Unloads package.
+#' Unloads from search path package.
 #' 
 #' @param pkg \strong{Signature argument}.
 #'    Object containing package information.
 #' @example inst/examples/unloadPackage.R
 #' @seealso \code{
-#'   	\link[rapp.core.library]{unloadPackage-character-method},
+#'   	\link[libr]{unloadPackage-character-method},
 #' 		\link[devtools]{unload}
 #' }
 #' @template author
@@ -28,18 +28,12 @@ setGeneric(
 #' @title 
 #' Unload Package 
 #'
-#' @description 
-#' Unloads package.
-#' 
-#' @details
-#' Details 
-#' 
 #' @inheritParams unloadPackage
 #' @param pkg \code{\link{missing}}.  
 #' @return See method 
-#'    \code{\link[rapp.core.library]{unloadPackage-character-method}}
+#'    \code{\link[libr]{unloadPackage-character-method}}
 #' @seealso \code{
-#'     \link[rapp.core.library]{unloadPackage}
+#'     \link[libr]{unloadPackage}
 #' }
 #' @template author
 #' @template references
@@ -71,12 +65,11 @@ setMethod(
 #' @param pkg \code{\link{character}}.  
 #' @return TODO
 #' @seealso \code{
-#'     \link[rapp.core.library]{unloadPackage}
+#'     \link[libr]{unloadPackage}
 #' }
 #' @template author
 #' @template references
 #' @export
-#' @import rapp.core.package
 #' @import devtools
 setMethod(
   f = "unloadPackage", 
@@ -88,7 +81,7 @@ setMethod(
   ) {
       
   ## Ensure 'pkg' as expected by 'devtools' //    
-  pkg <- rapp.core.package::asPackage(pkg)
+  pkg <- asPackage(pkg)
   
   ## Dispatch to actual 'devtools' function //
   devtools::unload(pkg = pkg)

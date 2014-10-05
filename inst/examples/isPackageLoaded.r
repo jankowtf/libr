@@ -9,7 +9,7 @@ pkg <- "devtools"
 isPackageLoaded(pkg = pkg)
 require(pkg, character.only = TRUE)
 isPackageLoaded(pkg = pkg)
-rapp.core.library::unloadPackage(pkg)
+libr::unloadPackage(pkg)
 isPackageLoaded(pkg = pkg)
 
 ## When 'pkg' specifies the name of an unloaded package //

@@ -13,14 +13,14 @@
 #' @param strict \code{\link{logical}}.
 #'    Should certain conditions lead to an error (\code{TRUE}) or only to 
 #'    an return value of \code{FALSE} (\code{FALSE}, default).
-#' @example inst/examples/isPackageLibrary.R
+#' @example inst/examples/isLibrary.R
 #' @seealso \code{
-#'    \link[rapp.core.library]{isPackageLibrary-character-method}
+#'    \link[libr]{isLibrary-character-method}
 #' } 
 #' @template author
 #' @template references
-#' @export isPackageLibrary
-setGeneric(name="isPackageLibrary", 
+#' @export isLibrary
+setGeneric(name="isLibrary", 
   signature = c(
     "lib"
   ),
@@ -29,7 +29,7 @@ setGeneric(name="isPackageLibrary",
     look_for = "DESCRIPTION",
     strict = FALSE
   ) {
-  standardGeneric("isPackageLibrary")
+  standardGeneric("isLibrary")
 })
 
 #' @title
@@ -38,18 +38,18 @@ setGeneric(name="isPackageLibrary",
 #' @description 
 #' Checks if a specified directory is a package library.
 #' 
-#' @inheritParams isPackageLibrary
+#' @inheritParams isLibrary
 #' @param lib \code{\link{character}}.  
 #' @return \code{\link{logical}}. \code{TRUE} if \code{lib} is a package library,
 #'    \code{FALSE} if it is not.
 #' @seealso \code{
-#'    \link[rapp.core.library]{isPackageLibrary}
+#'    \link[libr]{isLibrary}
 #' } 
 #' @template author
 #' @template references
 #' @export
-#' @import rapp.core.condition
-setMethod(f = "isPackageLibrary", 
+#' @import conditionr
+setMethod(f = "isLibrary", 
   signature = signature(  
     lib = "character"
   ), 
@@ -61,13 +61,13 @@ setMethod(f = "isPackageLibrary",
     
   if (!file.exists(lib)) {
     if (strict) {
-      rapp.core.condition::signalCondition(
+      conditionr::signalCondition(
         condition = "InvalidLibraryLocation",
         msg = c(
           "Library does not exist",
           Library = lib
         ),
-        ns = "rapp.core.library",
+        ns = "libr",
         type = "error"
       )
     } else {
@@ -76,13 +76,13 @@ setMethod(f = "isPackageLibrary",
   }    
   if (!file.info(lib)$isdir) {
     if (strict) {
-      rapp.core.condition::signalCondition(
+      conditionr::signalCondition(
         condition = "InvalidLibraryLocation",
         msg = c(
           "Specified library is not a directory",
           Library = lib
         ),
-        ns = "rapp.core.library",
+        ns = "libr",
         type = "error"
       )
     } else {

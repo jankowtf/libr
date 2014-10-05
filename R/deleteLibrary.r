@@ -8,15 +8,15 @@
 #' @param lib \strong{Signature argument}.
 #' 		Object containing package library information.
 #' @template threedot
-#' @example inst/examples/deletePackageLibrary.r
+#' @example inst/examples/deleteLibrary.r
 #' @template author
 #' @template references
 #' @seealso \code {
-#'    \link[rapp.core.library]{deletePackageLibrary-character-method}
+#'    \link[libr]{deleteLibrary-character-method}
 #' }
 #' @export
 setGeneric(
-  name = "deletePackageLibrary",
+  name = "deleteLibrary",
   signature = c(
     "lib"
   ),
@@ -26,7 +26,7 @@ setGeneric(
     .ctx,
     .ns
   ) {
-    standardGeneric("deletePackageLibrary")       
+    standardGeneric("deleteLibrary")       
   }
 )
 
@@ -37,19 +37,19 @@ setGeneric(
 #' Deletes an R package library if it does not correspond to 
 #' \code{R.home("library")}.
 #' 
-#' @inheritParams deletePackageLibrary
+#' @inheritParams deleteLibrary
 #' @param lib \code{\link{character}}.
 #' @return \code{\link{numeric}}. \code{0} or \code{1}.
-#' @example inst/examples/deletePackageLibrary.r
+#' @example inst/examples/deleteLibrary.r
 #' @template author
 #' @template references
 #' @seealso \code {
-#'    \link[rapp.core.library]{deletePackageLibrary}
+#'    \link[libr]{deleteLibrary}
 #' }
 #' @export
-#' @import rapp.core.condition
+#' @import conditionr
 setMethod(
-  f = "deletePackageLibrary", 
+  f = "deleteLibrary", 
   signature = signature(
     lib = "character"
   ), 
@@ -64,25 +64,25 @@ setMethod(
 #   }        
   
   ## Validate //
-  if (!isPackageLibrary(lib = lib, strict = TRUE)) {
-    rapp.core.condition::signalCondition(
+  if (!isLibrary(lib = lib, strict = TRUE)) {
+    conditionr::signalCondition(
       condition = "InvalidLibraryLocation",
       msg=c(
         "Invalid library location",
         Library = lib
       ),
-      ns = "rapp.core.library",
+      ns = "libr",
       type="error"
     )
   }
   if (lib == R.home("library")) {
-    rapp.core.condition::signalCondition(
+    conditionr::signalCondition(
       condition = "UnauthorizedLibraryOperation",
       msg=c(
         "Base library cannot be deleted",
         Library = lib
       ),
-      ns = "rapp.core.library",
+      ns = "libr",
       type="error"
     )
   }
