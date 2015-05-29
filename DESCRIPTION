@@ -16,5 +16,5 @@ LazyData: true
 Imports:
     devtools,
     conditionr,
-    repositr
+    reposr
 Date: 2014-10-05 15:16:08
