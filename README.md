@@ -8,7 +8,7 @@ Functionality for processing file system ressources
 ```
 require("devtools")
 devtools::install_github("Rappster/conditionr")
-devtools::install_github("Rappster/repositr")
+devtools::install_github("Rappster/reposr")
 devtools::install_github("Rappster/libr")
 require("libr")
 ```
