@@ -235,7 +235,7 @@ setMethod(
 #' @template references
 #' @export
 #' @import conditionr
-#' @import repositr
+#' @import reposr
 setMethod(
   f = "ensureLatestPackageVersions", 
   signature = signature(
@@ -250,7 +250,7 @@ setMethod(
     ...
   ) {
   
-  repos <- repositr::normalizeRepositoryPath(
+  repos <- reposr::normalizeRepositoryPath(
     repos = repos, 
     type = "url_file"
   )

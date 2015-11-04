@@ -1,5 +1,5 @@
 packrat::off()
-require("repositr")
+require("reposr")
 repos <- "q:/home/repos/r"
 expandRepository(repos)
 getRepositoryPathByType(repos = repos, type = "source")
